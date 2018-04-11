@@ -1,6 +1,7 @@
 class HelloElement extends HTMLElement {
     constructor() {
         super();
+        console.log(this)
         var shadow = this.attachShadow({mode: 'open'});
         shadow.innerHTML += `
 		<style>
