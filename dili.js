@@ -1,8 +1,19 @@
 let appConfig = {};
 const components = [];
 
-class DiliElement extends HTMLElement {
+function createClass(component) {
+  var klass, komponent;
+  klass = class extends HTMLElement {
+    constructor() {
+      super();
+    }
 
+    connectedCallback() {
+      component.connected()
+    }
+  };
+
+  return klass
 }
 
 class DiliComponent {
@@ -12,12 +23,7 @@ class DiliComponent {
   }
 
   init(component, element) {
-    class TempDom extends DiliElement {
-      connectedCallback() {
-        console.log('connectedCallback')
-      }
-    }
-    customElements.define(`${component.is}`, TempDom);
+    customElements.define(`${component.is}`, createClass(component));
   }
 }
 

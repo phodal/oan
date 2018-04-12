@@ -13,13 +13,13 @@
 Component({
   is: 'di-li',
   connected: function() {
-    console.log("connectedCallback")
+    console.log("di-li connectedCallback")
   }
 })
 
 Component({
   is: 'di-li-di-li',
   connected: function() {
-    console.log("connectedCallback")
+    console.log("di-li-di-li connectedCallback")
   }
 })
