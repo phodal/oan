@@ -2,7 +2,7 @@ let appConfig = {};
 const components = [];
 
 function createClass(component) {
-  var klass, komponent;
+  var klass;
   klass = class extends HTMLElement {
     constructor() {
       super();
