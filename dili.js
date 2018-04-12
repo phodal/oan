@@ -1,0 +1,3 @@
+class DiliElement extends HTMLElement {
+
+}
