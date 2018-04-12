@@ -1,9 +1,8 @@
 class HelloElement extends HTMLElement {
-    constructor() {
-        super();
-        console.log(this)
-        var shadow = this.attachShadow({mode: 'open'});
-        shadow.innerHTML += `
+  constructor() {
+    super();
+    var shadow = this.attachShadow({mode: 'open'});
+    shadow.innerHTML += `
 		<style>
 			#tabs { background-color: red; }
 			span { color: purple; }
@@ -13,7 +12,7 @@ class HelloElement extends HTMLElement {
 		</div>
 		<span>there</span>
 		`;
-    }
+  }
 }
 
 // Define the new element with the CustomElementsRegistry
