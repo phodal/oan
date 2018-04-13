@@ -6,14 +6,15 @@ function createClass(component) {
   klass = class extends HTMLElement {
     constructor() {
       super();
+      console.log(this.attributes)
     }
 
     connectedCallback() {
       component.connected()
     }
 
-    attributeChangedCallback() {
-
+    attributeChangedCallback(attr, oldVal, newVal) {
+      console.log(attr)
     }
 
     disconnectedCallback() {
