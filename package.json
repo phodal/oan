@@ -1,0 +1,23 @@
+{
+  "name": "oan",
+  "version": "0.0.2",
+  "description": "Another Web Components Framework.",
+  "main": "src/dili.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phodal/oan.git"
+  },
+  "keywords": [],
+  "author": "Phodal HUANG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phodal/oan/issues"
+  },
+  "homepage": "https://github.com/phodal/oan#readme"
+}
