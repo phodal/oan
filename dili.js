@@ -29,18 +29,18 @@ function createClass(component) {
 }
 
 class DiliComponent {
-  constructor(component, element) {
-    this.init(component, element);
+  constructor(component) {
+    this.init(component);
     return this;
   }
 
-  init(component, element) {
+  init(component) {
     customElements.define(`${component.is}`, createClass(component));
   }
 }
 
-function Component(component, element) {
-  let diliComponent = new DiliComponent(component, element);
+function Component(component) {
+  let diliComponent = new DiliComponent(component);
   components.push({
     is: name,
     component: diliComponent

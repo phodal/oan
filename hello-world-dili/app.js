@@ -19,6 +19,7 @@ Component({
 
 Component({
   is: 'di-li-di-li',
+  properties: 'hello',
   connected: function() {
     console.log("di-li-di-li connectedCallback")
   }
