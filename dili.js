@@ -11,6 +11,18 @@ function createClass(component) {
     connectedCallback() {
       component.connected()
     }
+
+    attributeChangedCallback() {
+
+    }
+
+    disconnectedCallback() {
+
+    }
+
+    adoptedCallback() {
+
+    }
   };
 
   return klass
