@@ -1,6 +1,8 @@
 let appConfig = {};
 const components = [];
+
 // https://leihuang.me/posts/implementing-two-way-data-binding-with-vanilla-javascript/
+// https://jsfiddle.net/leihuang/bevxvoL9/1/
 const observable = value => {
   const listeners = [];
   const notify = newVal => listeners.forEach(listener => listener(newVal))
@@ -13,7 +15,7 @@ const observable = value => {
   }
   observer.subscribe = function(listener) { listeners.push(listener); };
   return observer;
-}
+};
 
 function createClass(component) {
   var klass;
