@@ -7,10 +7,10 @@
   <script src="../dili.js"></script>
 </head>
 <body>
-  <di-li hello="world">Dili</di-li>
+  <di-li><span>Dili</span></di-li>
   <br />
-  <di-li-di-li hello="world()">
-    <input type="text">
+  <di-li-di-li (hello)="world()">
+    <input type="text" [diModel]="{{text}}">
     {{text}}
   </di-li-di-li>
   <script src="app.js"></script>

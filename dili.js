@@ -21,7 +21,7 @@ function createClass(component) {
     constructor() {
       super();
       console.log(this.attributes);
-      console.log(this.getAttribute("hello"));
+      console.log(this.getAttribute("(hello)"));
     }
 
     connectedCallback() {
