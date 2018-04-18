@@ -24,18 +24,40 @@ function createClass(component) {
   klass = class extends HTMLElement {
     constructor() {
       super();
+      const originContent = this.textContent;
+
       // var initial = observable();
-      this.textContent = component.data.text;
+      // this.textContent = component.data.text;
       // console.log(component)
       // let obs = observable(component.data.text);
       // obs.subscribe(function () {
       //   this.textContent = observable(component.data.text);
       // });
 
-      console.log(this.children);
-      console.log(this.textContent);
-      console.log(this.attributes);
-      console.log(this.getAttribute("(hello)"));
+      if (this.attributes.length > 0) {
+        console.log(this.getAttribute(this.attributes[0].name));
+      }
+      let templateKeys = this.getTemplateKey(this.textContent);
+      console.log(templateKeys)
+      this.textContent = this.renderText(this.textContent, templateKeys, component.data);
+    }
+
+    renderText(content, templateKeys, data) {
+      for (let i = 0; i < templateKeys.length; i ++) {
+        let key = templateKeys[0];
+        if (data.hasOwnProperty(key)) {
+          let searchValue = `{{${key}}}`;
+          content = content.replace(new RegExp(searchValue, 'g'), data[key]);
+        }
+      }
+
+      return content;
+    }
+
+    getTemplateKey(str) {
+      return str.match(/{{\s*[\w\.]+\s*}}/g).map(function (x) {
+        return x.match(/[\w\.]+/)[0];
+      });
     }
 
     connectedCallback() {
