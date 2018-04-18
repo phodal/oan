@@ -27,7 +27,9 @@ Component({
 
 Component({
   is: 'di-li-di-li',
-  properties: 'hello',
+  data: {
+    text: 'Hello, World'
+  },
   connected: function() {
     console.log("di-li-di-li connectedCallback")
   }

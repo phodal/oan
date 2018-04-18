@@ -3,7 +3,8 @@ const components = [];
 
 const observable = value => {
   const listeners = [];
-  const notify = newVal => listeners.forEach(listener => listener(newVal))
+  const notify = newVal => listeners.forEach(listener => listener(newVal));
+
   function observer(newValue) {
     if (arguments.length && newValue !== value) {
       value = newValue;
@@ -11,7 +12,10 @@ const observable = value => {
     }
     return value;
   }
-  observer.subscribe = function(listener) { listeners.push(listener); };
+
+  observer.subscribe = function (listener) {
+    listeners.push(listener);
+  };
   return observer;
 };
 
@@ -20,7 +24,16 @@ function createClass(component) {
   klass = class extends HTMLElement {
     constructor() {
       super();
+      // var initial = observable();
+      this.textContent = component.data.text;
+      // console.log(component)
+      // let obs = observable(component.data.text);
+      // obs.subscribe(function () {
+      //   this.textContent = observable(component.data.text);
+      // });
+
       console.log(this.children);
+      console.log(this.textContent);
       console.log(this.attributes);
       console.log(this.getAttribute("(hello)"));
     }
