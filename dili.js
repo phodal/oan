@@ -20,6 +20,7 @@ function createClass(component) {
   klass = class extends HTMLElement {
     constructor() {
       super();
+      console.log(this.children);
       console.log(this.attributes);
       console.log(this.getAttribute("(hello)"));
     }
