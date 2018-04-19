@@ -44,10 +44,15 @@ function createClass(component) {
 
     renderText(content, templateKeys, data) {
       for (let i = 0; i < templateKeys.length; i ++) {
-        let key = templateKeys[0];
+        let key = templateKeys[i];
         if (data.hasOwnProperty(key)) {
           let searchValue = `{{${key}}}`;
           content = content.replace(new RegExp(searchValue, 'g'), data[key]);
+        } else {
+          if (/{{.*}}/.test(content)) {
+            console.warn('template,', /{{.*}}/.exec(content)[0], 'not found')
+          }
+          content = content.replace(/{{.*}}/, '');
         }
       }
 
