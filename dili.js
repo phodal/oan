@@ -38,7 +38,6 @@ function createClass(component) {
         console.log(this.getAttribute(this.attributes[0].name));
       }
       let templateKeys = this.getTemplateKey(this.textContent);
-      console.log(templateKeys)
       this.textContent = this.renderText(this.textContent, templateKeys, component.data);
     }
 
