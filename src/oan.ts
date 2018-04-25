@@ -1,38 +1,11 @@
 let appConfig = {};
-const components = [];
+const components: any = [];
 
-const observable = value => {
-  const listeners = [];
-  const notify = newVal => listeners.forEach(listener => listener(newVal));
-
-  function observer(newValue) {
-    if (arguments.length && newValue !== value) {
-      value = newValue;
-      notify(newValue);
-    }
-    return value;
-  }
-
-  observer.subscribe = function (listener) {
-    listeners.push(listener);
-  };
-  return observer;
-};
-
-function createClass(component) {
+function createClass(component: any) {
   var klass;
   klass = class extends HTMLElement {
     constructor() {
       super();
-      const originContent = this.textContent;
-
-      // var initial = observable();
-      // this.textContent = component.data.text;
-      // console.log(component)
-      // let obs = observable(component.data.text);
-      // obs.subscribe(function () {
-      //   this.textContent = observable(component.data.text);
-      // });
 
       if (this.attributes.length > 0) {
         console.log(this.getAttribute(this.attributes[0].name));
@@ -41,7 +14,7 @@ function createClass(component) {
       this.textContent = this.renderText(this.textContent, templateKeys, component.data);
     }
 
-    renderText(content, templateKeys, data) {
+    renderText(content: any, templateKeys: any, data: any) {
       for (let i = 0; i < templateKeys.length; i ++) {
         let key = templateKeys[i];
         if (data.hasOwnProperty(key)) {
@@ -49,7 +22,7 @@ function createClass(component) {
           content = content.replace(new RegExp(searchValue, 'g'), data[key]);
         } else {
           if (/{{.*}}/.test(content)) {
-            console.warn('template,', /{{.*}}/.exec(content)[0], 'not found')
+            console.warn('template,', /{{.*}}/.exec(content), 'not found')
           }
           content = content.replace(/{{.*}}/, '');
         }
@@ -58,17 +31,15 @@ function createClass(component) {
       return content;
     }
 
-    getTemplateKey(str) {
-      return str.match(/{{\s*[\w\.]+\s*}}/g).map(function (x) {
-        return x.match(/[\w\.]+/)[0];
-      });
+    getTemplateKey(str: any) {
+      return str.match(/{{\s*[\w\.]+\s*}}/g).map((x: any) => x.match(/[\w\.]+/)[0]);
     }
 
     connectedCallback() {
       component.connected()
     }
 
-    attributeChangedCallback(attr, oldVal, newVal) {
+    attributeChangedCallback(attr: any, oldVal: any, newVal: any) {
       console.log(attr)
     }
 
@@ -85,17 +56,17 @@ function createClass(component) {
 }
 
 class DiliComponent {
-  constructor(component) {
+  constructor(component: any) {
     this.init(component);
     return this;
   }
 
-  init(component) {
+  init(component: any) {
     customElements.define(`${component.is}`, createClass(component));
   }
 }
 
-function Component(component) {
+function Component(component: any) {
   let diliComponent = new DiliComponent(component);
   components.push({
     is: name,
@@ -103,6 +74,6 @@ function Component(component) {
   });
 }
 
-function App(config) {
+function App(config: any) {
   appConfig = config;
 }
