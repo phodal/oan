@@ -1,16 +1,4 @@
-// class MyDom extends DiliElement {
-//   static get observedAttributes() {
-//     console.log("observedAttributes");
-//   }
-//   connectedCallback() {
-//     console.log("connectedCallback")
-//   }
-//   attributeChangedCallback(name, oldValue, newValue) {
-//     console.log("attributeChangedCallback");
-//   }
-// }
-
-Component({
+oan.Component({
   is: 'di-li',
   data: {
     text: 'Hello, World'
@@ -25,7 +13,7 @@ Component({
   }
 })
 
-Component({
+oan.Component({
   is: 'di-li-di-li',
   data: {
     text: 'Hello, World'
