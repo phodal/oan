@@ -4,7 +4,7 @@ import { IComponent } from './shared/IComponent'
 
 const components: IComponent[] = []
 
-function Component(component: any) {
+function Component(component: IComponent) {
   let diliComponent = new DiliComponent(component)
   components.push({
     is: name,

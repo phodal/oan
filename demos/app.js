@@ -1,7 +1,8 @@
 oan.Component({
   is: 'di-li',
   data: {
-    text: 'Hello, World'
+    text: 'Hello, ',
+    text2: 'World'
   },
   methods: {
     world: function() {
@@ -11,14 +12,4 @@ oan.Component({
   connected: function() {
     console.log("di-li connectedCallback")
   }
-})
-
-oan.Component({
-  is: 'di-li-di-li',
-  data: {
-    text: 'Hello, World'
-  },
-  connected: function() {
-    console.log("di-li-di-li connectedCallback")
-  }
-})
+});
