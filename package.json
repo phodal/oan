@@ -104,5 +104,8 @@
     "typedoc": "^0.11.0",
     "typescript": "^2.6.2",
     "validate-commit-msg": "^2.12.2"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "^1.1.1"
   }
 }

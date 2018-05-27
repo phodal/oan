@@ -1,5 +1,5 @@
-let appConfig = {};
+import { IComponent } from './shared/IComponent'
 
-export function App(config: any) {
-  appConfig = config;
-}
+const App: any = {}
+
+export default App
