@@ -1,3 +1,48 @@
+function bindModelToDom(dom: any, list: any, data: any) {
+  Array.apply(null, dom.attributes).forEach(function(attr: any, index: any) {
+    let attrName = attr.name
+    Object.defineProperty(data, attrName, {
+      get: function() {
+        return dom[attrName]
+      },
+      set: function(newValue) {
+        dom[attrName] = newValue
+        dom.setAttribute(attrName, newValue)
+
+        for (let i = 0; i < list.length; i++) {
+          let item = list[i]
+          item[attrName] = newValue
+          item.setAttribute(attrName, newValue)
+        }
+      },
+      configurable: true
+    })
+  })
+
+  return data
+}
+
+function twoWayBinding(list: any, obj: any) {
+  let target = Object.assign({}, obj)
+
+  for (let i = 0; i < list.length; i++) {
+    obj = bindModelToDom(list[i], list, obj)
+  }
+
+  for (let property in target) {
+    if (target.hasOwnProperty(property)) {
+      obj[property] = target[property]
+    }
+  }
+
+  console.log(obj)
+  function handleNewElement(element: any) {
+    console.log(element)
+  }
+
+  document.addEventListener('DOMNodeInserted', handleNewElement, false)
+}
+
 export class DiliComponent {
   constructor(component: any) {
     this.init(component)
@@ -44,12 +89,13 @@ export class DiliComponent {
         value: function connectedCallback(): void {
           this.component = component
           this.data = Object.assign({}, component.data)
-          if (this.attributes.length > 0) {
-            console.log(this.getAttribute(this.attributes[0].name))
-          }
-          let templateKeys = this.getTemplateKey(this.textContent)
-          this.textContent = this.renderText(this.textContent, templateKeys, this.data)
+          // if (this.attributes.length > 0) {
+          //   console.log(this.getAttribute(this.attributes[0].name));
+          // }
+          // let templateKeys = this.getTemplateKey(this.textContent);
+          // this.textContent = this.renderText(this.textContent, templateKeys, this.data);
 
+          twoWayBinding([this], this.data)
           this.component.connected()
         }
       },
