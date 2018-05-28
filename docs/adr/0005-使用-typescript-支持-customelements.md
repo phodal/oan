@@ -16,6 +16,8 @@
 
 https://github.com/glimmerjs/glimmer-web-component
 
+https://www.dailydrip.com/blog/some-first-impressions-of-glimmerjs
+
 ## 后果
 
 在这里记录结果...
