@@ -35,9 +35,8 @@ function twoWayBinding(list: any, obj: any) {
     }
   }
 
-  console.log(obj)
   function handleNewElement(element: any) {
-    console.log(element)
+    // console.log(element)
   }
 
   document.addEventListener('DOMNodeInserted', handleNewElement, false)
