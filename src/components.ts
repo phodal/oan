@@ -48,7 +48,25 @@ export class DiliComponent {
           }
           let templateKeys = this.getTemplateKey(this.textContent)
           this.textContent = this.renderText(this.textContent, templateKeys, component.data)
-          console.log('kkkkkk')
+
+          this.component.connected()
+        }
+      },
+      attributeChangedCallback: {
+        value: function attributeChangedCallback() {
+          console.log('attributeChangedCallback')
+        }
+      },
+
+      disconnectedCallback: {
+        value: function disconnectedCallback() {
+          console.log('disconnectedCallback')
+        }
+      },
+
+      adoptedCallback: {
+        value: function adoptedCallback() {
+          console.log('adoptedCallback')
         }
       }
     })
