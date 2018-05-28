@@ -43,11 +43,12 @@ export class DiliComponent {
       connectedCallback: {
         value: function connectedCallback(): void {
           this.component = component
+          this.data = Object.assign({}, component.data)
           if (this.attributes.length > 0) {
             console.log(this.getAttribute(this.attributes[0].name))
           }
           let templateKeys = this.getTemplateKey(this.textContent)
-          this.textContent = this.renderText(this.textContent, templateKeys, component.data)
+          this.textContent = this.renderText(this.textContent, templateKeys, this.data)
 
           this.component.connected()
         }
