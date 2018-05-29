@@ -9,6 +9,7 @@ function bindModelToDom(dom: any, list: any, data: any) {
         dom[attrName] = newValue
         dom.setAttribute(attrName, newValue)
 
+        console.log(newValue)
         for (let i = 0; i < list.length; i++) {
           let item = list[i]
           item[attrName] = newValue
@@ -25,8 +26,8 @@ function bindModelToDom(dom: any, list: any, data: any) {
 function twoWayBinding(list: any, obj: any) {
   let target = Object.assign({}, obj)
 
-  console.log(list)
   for (let i = 0; i < list.length; i++) {
+    console.log(list[i])
     obj = bindModelToDom(list[i], list, obj)
   }
 
@@ -95,7 +96,8 @@ export class DiliComponent {
           // let templateKeys = this.getTemplateKey(this.textContent)
           // this.textContent = this.renderText(this.textContent, templateKeys, this.data)
 
-          twoWayBinding(this, this.data)
+          console.log(this.childNodes)
+          twoWayBinding(this.childNodes, this.data)
           this.component.connected()
         }
       },
