@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DOM helpers</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="./component.polyfills.min.js"></script>
+  <script src="./component.js"></script>
+  <script src="./dom.js"></script>
+</head>
+<body>
+<h1>Empty, set HTML</h1>
+<my-custom-div>My custom div</my-custom-div>
+<div>My native div</div>
+<p><button id="clear">Clear both</button> <button id="fill">Fill</button></p>
+<script>
+
+  // Define my-custom-div component
+  bb.component(bb.dom, {
+    is: 'my-custom-div',
+    on: {
+      attach: function() {
+        this.innerHTML += '. Hello!';
+      }
+    }
+  });
+
+  var div = document.querySelector('div');
+  var customDiv = document.querySelector('my-custom-div');
+  Object.assign(div, bb.dom); // enhance div element
+
+  // Handle Clear
+  document.querySelector('#clear').addEventListener('click', function() {
+    customDiv.empty();
+    div.empty();
+  });
+
+  // Handle Fill
+  document.querySelector('#fill').addEventListener('click', function() {
+    div.html('My native div');
+    customDiv.html('My custom div');
+  });
+
+</script>
+</body>
+
+</html>
