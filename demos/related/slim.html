@@ -1,0 +1,23 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<script src="./slim.js"></script>
+
+<my-tag></my-tag>
+<script>
+  Slim.tag(
+    "my-tag",
+    `<div>Hello, i am a custom element</div>`,
+    class MyTag extends Slim {
+      // your code here
+    });
+</script>
+
+</body>
+</html>
