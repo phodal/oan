@@ -10,10 +10,11 @@ oan.Component({
     }
   },
   connected: function() {
-    console.log("di-li connectedCallback");
-    console.log(this.data.text);
+    this.data.text = 'Hello...';
+
     setTimeout(() => {
-      this.data.text = 'Hello...';
+      this.data.text2 = 'Hello...';
+      console.log(this.data.text);
     }, 500);
-  }
+  },
 });

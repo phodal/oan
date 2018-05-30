@@ -1,3 +1,6 @@
+import { Watcher } from './utils/Watcher'
+import { Observer } from './utils/Observer'
+
 export const DiliComponent = function(component: any) {
   function DiliElement() {
     let construct = Reflect.construct(HTMLElement, [], DiliElement)
@@ -14,6 +17,15 @@ export const DiliComponent = function(component: any) {
         let templateKeys = this.getTemplateKey(this.textContent)
         this.childNodes.forEach((node: any) => {
           node.textContent = this.renderText(node.textContent, templateKeys, this.data)
+        })
+
+        let observe = new Observer(component.data)
+        let watcher = new Watcher(component.data, 'text+text2', function(
+          newValue: any,
+          oldValue: any
+        ) {
+          console.log('new value is  ' + newValue)
+          console.log('oldValue is  ' + oldValue)
         })
 
         return DiliElement
