@@ -1,13 +1,20 @@
 export const DiliComponent = function(component: any) {
   function DiliElement() {
-    console.log(component)
-    return Reflect.construct(HTMLElement, [], DiliElement)
+    let construct = Reflect.construct(HTMLElement, [], DiliElement)
+    construct.constructor()
+    return construct
   }
 
   DiliElement.prototype = Object.create(HTMLElement.prototype, {
     constructor: {
       value: function constructor() {
-        console.log('constructor')
+        this.component = component
+        this.data = Object.assign({}, component.data)
+
+        let templateKeys = this.getTemplateKey(this.textContent)
+        this.childNodes.forEach((node: any) => {
+          node.textContent = this.renderText(node.textContent, templateKeys, this.data)
+        })
 
         return DiliElement
       }
@@ -44,14 +51,6 @@ export const DiliComponent = function(component: any) {
         // template.innerHTML = `Place your template here`;
         // const instance = template.content.cloneNode(true);
         // shadowRoot.appendChild(instance);
-
-        this.component = component
-        this.data = Object.assign({}, component.data)
-
-        let templateKeys = this.getTemplateKey(this.textContent)
-        this.childNodes.forEach((node: any) => {
-          node.textContent = this.renderText(node.textContent, templateKeys, this.data)
-        })
 
         this.component.connected()
       }
