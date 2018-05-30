@@ -1,4 +1,4 @@
-oan.Component({
+oan.DiliComponent({
   is: 'di-li',
   data: {
     text: 'Hello, ',
