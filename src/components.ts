@@ -1,7 +1,7 @@
 export const DiliComponent = function(component: any) {
   function DiliElement() {
     let construct = Reflect.construct(HTMLElement, [], DiliElement)
-    construct.constructor()
+    construct.constructor(component)
     return construct
   }
 
