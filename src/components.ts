@@ -12,7 +12,6 @@ export class DiliComponent {
     DiliElement.prototype = Object.create(HTMLElement.prototype, {
       constructor: {
         value: function constructor() {
-          console.log(this.component)
           return DiliElement
         }
       },
@@ -41,6 +40,14 @@ export class DiliComponent {
       },
       connectedCallback: {
         value: function connectedCallback(): void {
+          // this._childrenRead = false;
+          // https://stackoverflow.com/questions/49786436/accessing-childnodes-of-custom-elments
+          // const shadowRoot = this.attachShadow({mode: 'open'});
+          // const template = document.createElement('template');
+          // template.innerHTML = `Place your template here`;
+          // const instance = template.content.cloneNode(true);
+          // shadowRoot.appendChild(instance);
+
           this.component = component
           this.data = Object.assign({}, component.data)
           if (this.attributes.length > 0) {
@@ -49,7 +56,7 @@ export class DiliComponent {
           let templateKeys = this.getTemplateKey(this.textContent)
           this.textContent = this.renderText(this.textContent, templateKeys, this.data)
 
-          console.log(this.childNodes)
+          console.log(this, this.childNodes)
           this.component.connected()
         }
       },
