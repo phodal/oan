@@ -1,17 +1,21 @@
 export class DiliComponent {
   constructor(component: any) {
+    console.log(this)
     this.init(component)
     return this
   }
 
   init(component: any) {
     function DiliElement() {
+      console.log(component)
       return Reflect.construct(HTMLElement, [], DiliElement)
     }
 
     DiliElement.prototype = Object.create(HTMLElement.prototype, {
       constructor: {
         value: function constructor() {
+          console.log('constructor')
+
           return DiliElement
         }
       },
@@ -50,13 +54,12 @@ export class DiliComponent {
 
           this.component = component
           this.data = Object.assign({}, component.data)
-          if (this.attributes.length > 0) {
-            console.log(this.getAttribute(this.attributes[0].name))
-          }
-          let templateKeys = this.getTemplateKey(this.textContent)
-          this.textContent = this.renderText(this.textContent, templateKeys, this.data)
 
-          console.log(this, this.childNodes)
+          let templateKeys = this.getTemplateKey(this.textContent)
+          this.childNodes.forEach((node: any) => {
+            node.textContent = this.renderText(node.textContent, templateKeys, this.data)
+          })
+
           this.component.connected()
         }
       },
@@ -77,6 +80,6 @@ export class DiliComponent {
       }
     })
 
-    customElements.define(`${component.is}`, DiliElement)
+    return customElements.define(`${component.is}`, DiliElement)
   }
 }
