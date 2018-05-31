@@ -12,10 +12,9 @@ export const DiliComponent = function(component: any) {
     constructor: {
       value: function constructor() {
         this.component = component
-        this.data = Object.assign({}, component.data)
-        let data = this.data
 
-        Observe(data, this)
+        let data = this.component.data
+        Observe(data, this.component)
 
         this.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
@@ -28,15 +27,14 @@ export const DiliComponent = function(component: any) {
                 if (attr.name === '[model]') {
                   let name = (mapName = attr.nodeValue)
                   node.addEventListener('input', function(e: any) {
-                    that.data[name] = e.target.value
+                    that.component[name] = e.target.value
                   })
 
-                  node.value = that.data[name]
+                  node.value = that.component.data[name]
                   node.removeAttribute('[model]')
                 }
               }
-              console.log(this, node, mapName)
-              let watcher = new Watcher(this, node, mapName, 'input')
+              let watcher = new Watcher(that.component, node, mapName, 'input')
             }
           }
 
@@ -44,15 +42,10 @@ export const DiliComponent = function(component: any) {
             if (reg.test(node.nodeValue)) {
               let name = RegExp.$1 // 获取匹配到的字符串
               name = name.trim()
-              console.log(name, this, node, name)
-              let watcher = new Watcher(this, node, name, 'text')
+              let watcher = new Watcher(that.component, node, name, 'text')
             }
           }
         })
-
-        setTimeout(() => {
-          this.data.text = 'Hello...'
-        }, 50)
 
         return DiliElement
       }

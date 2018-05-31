@@ -9,7 +9,9 @@ function defineReactive(obj: any, key: any, val: any) {
   let dep = new Dep()
   Object.defineProperty(obj, key, {
     get: function() {
-      if (Dep.target) dep.addDep(Dep.target)
+      if (Dep.target) {
+        dep.addDep(Dep.target)
+      }
       return val
     },
     set: function(newVal) {

@@ -1,3 +1,5 @@
+import { Watcher } from './Watcher'
+
 export class Dep {
   static target: any
   private deps: any[]
@@ -6,14 +8,14 @@ export class Dep {
     this.deps = []
   }
 
-  addDep(watcher: any) {
+  addDep(watcher: Watcher) {
     if (watcher) {
       this.deps.push(watcher)
     }
   }
 
   notify() {
-    this.deps.forEach(watcher => {
+    this.deps.forEach((watcher: Watcher) => {
       watcher.update()
     })
   }
