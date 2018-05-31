@@ -19,7 +19,9 @@ export const DiliComponent = function(component: any) {
         this.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
-          if (node.tagName === 'INPUT') {
+          let nodeName = node.nodeName.toLowerCase()
+
+          if (nodeName === 'input') {
             if (node.attributes && node.attributes.length > 0) {
               let mapName
               for (let i = 0; i < node.attributes.length; i++) {
