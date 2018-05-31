@@ -17,22 +17,34 @@ export const DiliComponent = function(component: any) {
         Observe(this.data, this)
 
         this.childNodes.forEach((node: any) => {
-          console.log(node)
           let reg = /{{(.*)}}/
-          let watcher = new Watcher(this, node, 'text2', 'input')
+          let componentKey = /\[(.*)\]/
 
-          if (node.nodeType === 3) {
+          if (node.tagName === 'INPUT') {
+            if (node.attributes && node.attributes.length > 0) {
+              for (let i = 0; i < node.attributes.length; i++) {
+                let attr = node.attributes[i]
+                if (componentKey.test(attr.name)) {
+                  let keyName = RegExp.$1
+                  if (keyName === 'model') {
+                    let watcher = new Watcher(this, node, attr.value, 'input')
+                  }
+                }
+              }
+            }
+          }
+
+          if (node.nodeType === node.TEXT_NODE) {
             if (reg.test(node.nodeValue)) {
               let name = RegExp.$1 // 获取匹配到的字符串
               name = name.trim()
-              let watcher = new Watcher(this, node, 'text', 'text')
+              let watcher = new Watcher(this, node, name, 'text')
             }
           }
         })
 
         setTimeout(() => {
           this.data.text2 = 'Hello...'
-          console.log(this.data)
         }, 50)
 
         return DiliElement
