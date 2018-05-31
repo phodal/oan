@@ -1,5 +1,5 @@
 import { Watcher } from './utils/Watcher'
-import { Observer } from './utils/Observer'
+import { Observe } from './utils/Observe'
 
 export const DiliComponent = function(component: any) {
   function DiliElement() {
@@ -15,18 +15,27 @@ export const DiliComponent = function(component: any) {
         this.data = Object.assign({}, component.data)
 
         let templateKeys = this.getTemplateKey(this.textContent)
+        Observe(this.data, this)
+
         this.childNodes.forEach((node: any) => {
           node.textContent = this.renderText(node.textContent, templateKeys, this.data)
+
+          let reg = /\{\{(.*)\}\}/
+          let watcher = new Watcher(this, node, 'text2', 'input')
+
+          if (node.nodeType === 3) {
+            if (reg.test(node.nodeValue)) {
+              let name = RegExp.$1 // 获取匹配到的字符串
+              name = name.trim()
+              let watcher = new Watcher(this, node, name, 'text')
+            }
+          }
         })
 
-        let observe = new Observer(component.data)
-        let watcher = new Watcher(component.data, 'text+text2', function(
-          newValue: any,
-          oldValue: any
-        ) {
-          console.log('new value is  ' + newValue)
-          console.log('oldValue is  ' + oldValue)
-        })
+        setTimeout(() => {
+          this.data.text = 'Hello...'
+          console.log(this.data)
+        }, 50)
 
         return DiliElement
       }
