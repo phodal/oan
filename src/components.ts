@@ -38,29 +38,6 @@ export const DiliComponent = function(component: any) {
         return DiliElement
       }
     },
-    getTemplateKey: {
-      value: function getTemplateKey(str: any) {
-        return str.match(/{{\s*[\w\.]+\s*}}/g).map((x: any) => x.match(/[\w\.]+/)[0])
-      }
-    },
-    renderText: {
-      value: function renderText(content: any, templateKeys: any, data: any) {
-        for (let i = 0; i < templateKeys.length; i++) {
-          let key = templateKeys[i]
-          if (data.hasOwnProperty(key)) {
-            let searchValue = `{{${key}}}`
-            content = content.replace(new RegExp(searchValue, 'g'), data[key])
-          } else {
-            if (/{{.*}}/.test(content)) {
-              console.warn('template,', /{{.*}}/.exec(content), 'not found')
-            }
-            content = content.replace(/{{.*}}/, '')
-          }
-        }
-
-        return content
-      }
-    },
     connectedCallback: {
       value: function connectedCallback(): void {
         // this._childrenRead = false;
