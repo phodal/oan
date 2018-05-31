@@ -62,22 +62,26 @@ export const DiliComponent = function(component: any) {
         // const instance = template.content.cloneNode(true);
         // shadowRoot.appendChild(instance);
 
+        console.log('connected')
         this.component.connected()
       }
     },
     attributeChangedCallback: {
       value: function attributeChangedCallback() {
         console.log('attributeChangedCallback')
+        this.component.change()
       }
     },
     disconnectedCallback: {
       value: function disconnectedCallback() {
         console.log('disconnectedCallback')
+        this.component.disconnected()
       }
     },
     adoptedCallback: {
       value: function adoptedCallback() {
         console.log('adoptedCallback')
+        this.component.adopted()
       }
     }
   })

@@ -6,8 +6,9 @@ const components: IComponent[] = []
 
 function Component(component: IComponent) {
   let diliComponent = DiliComponent(component)
+  console.log(diliComponent)
   components.push({
-    is: name,
+    is: component.is,
     component: diliComponent
   })
 

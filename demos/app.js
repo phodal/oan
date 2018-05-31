@@ -11,5 +11,7 @@ oan.Component({
   },
   connected: function() {
     this.text = 'Hello...';
+
+    console.log(oan)
   },
 });
