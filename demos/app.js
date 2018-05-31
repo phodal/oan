@@ -10,6 +10,6 @@ oan.Component({
     }
   },
   connected: function() {
-    this.data.text = 'Hello...';
+    this.data.text2 = 'Hello...';
   },
 });

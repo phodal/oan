@@ -14,26 +14,24 @@ export const DiliComponent = function(component: any) {
         this.component = component
         this.data = Object.assign({}, component.data)
 
-        let templateKeys = this.getTemplateKey(this.textContent)
         Observe(this.data, this)
 
         this.childNodes.forEach((node: any) => {
-          node.textContent = this.renderText(node.textContent, templateKeys, this.data)
-
-          let reg = /\{\{(.*)\}\}/
+          console.log(node)
+          let reg = /{{(.*)}}/
           let watcher = new Watcher(this, node, 'text2', 'input')
 
           if (node.nodeType === 3) {
             if (reg.test(node.nodeValue)) {
               let name = RegExp.$1 // 获取匹配到的字符串
               name = name.trim()
-              let watcher = new Watcher(this, node, name, 'text')
+              let watcher = new Watcher(this, node, 'text', 'text')
             }
           }
         })
 
         setTimeout(() => {
-          this.data.text = 'Hello...'
+          this.data.text2 = 'Hello...'
           console.log(this.data)
         }, 50)
 
