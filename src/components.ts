@@ -14,7 +14,9 @@ export const DiliComponent = function(component: any) {
         this.component = component
 
         let data = this.component.data
-        Observe(data, this.component)
+        if (data) {
+          Observe(data, this.component)
+        }
 
         this.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
