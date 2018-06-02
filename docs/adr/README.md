@@ -6,3 +6,4 @@
 * [4. 增加-cli-部署-web-components-功能](0004-增加-cli-部署-web-components-功能.md)
 * [5. 使用-typescript-支持-customelements](0005-使用-typescript-支持-customelements.md)
 * [6. 重新设计-consutrctor](0006-重新设计-consutrctor.md)
+* [7. 使用-shadow-dom-来实现部分-ui-更新](0007-使用-shadow-dom-来实现部分-ui-更新.md)
