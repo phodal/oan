@@ -5,16 +5,9 @@
   <title>Dili Web Components</title>
   <script src="./others/libs/webcomponents/custom-elements.min.js"></script>
   <script src="../dist/oan.umd.js"></script>
+  <link rel="import" href="di-li.html">
 </head>
 <body>
-  <di-li (world)="world()" [hello]="hello">
-    {{text}}
-    <br />
-    <di-da>{{text}}</di-da>
-    {{text2}}
-    {{text3}}
-    <input type="text" [model]="text2">
-  </di-li>
-  <script src="app.js"></script>
+<di-li (world)="world()" [hello]="hello"></di-li>
 </body>
 </html>
