@@ -22,9 +22,12 @@ export const DiliComponent = function(component: any) {
         const thisDoc = ((thatDoc as any)._currentScript || thatDoc.currentScript).ownerDocument
         const selector = thisDoc.querySelector('template')
         this.template = selector.content
-        console.log(selector)
+        const shadowRoot = this.createShadowRoot()
+        const clone = document.importNode(this.template, true)
 
-        selector.childNodes.forEach((node: any) => {
+        shadowRoot.appendChild(clone)
+
+        shadowRoot.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
           let nodeName = node.nodeName.toLowerCase()
@@ -62,12 +65,6 @@ export const DiliComponent = function(component: any) {
     },
     connectedCallback: {
       value: function connectedCallback(): void {
-        const shadowRoot = this.createShadowRoot()
-        const clone = document.importNode(this.template, true)
-
-        shadowRoot.appendChild(clone)
-
-        console.log('connected')
         this.component.connected()
       }
     },
