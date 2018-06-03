@@ -6,8 +6,11 @@
   <script src="./others/libs/webcomponents/custom-elements.min.js"></script>
   <script src="../dist/oan.umd.js"></script>
   <link rel="import" href="di-li.html">
+  <link rel="import" href="di-da.html">
 </head>
 <body>
-<di-li (world)="world()" [hello]="hello"></di-li>
+<di-li (world)="world()" [hello]="hello">
+  <di-da>{{text}}</di-da>
+</di-li>
 </body>
 </html>

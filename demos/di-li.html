@@ -1,7 +1,6 @@
 <template>
   {{text}}
   <br/>
-  <di-da>{{text}}</di-da>
   {{text2}}
   {{text3}}
   <input type="text" [model]="text2">
@@ -9,16 +8,6 @@
 
 <script>
   (function (window, document, undefined) {
-    oan.Component({
-      is: "di-da",
-      data: {
-        text: 'di-da text'
-      },
-      connected: function () {
-        console.log("di connected")
-      },
-    });
-
     oan.Component({
       is: "di-li",
       data: {

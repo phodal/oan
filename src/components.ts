@@ -18,7 +18,13 @@ export const DiliComponent = function(component: any) {
           Observe(data, this.component)
         }
 
-        this.childNodes.forEach((node: any) => {
+        const thatDoc = document
+        const thisDoc = ((thatDoc as any)._currentScript || thatDoc.currentScript).ownerDocument
+        const selector = thisDoc.querySelector('template')
+        this.template = selector.content
+        console.log(selector)
+
+        selector.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
           let nodeName = node.nodeName.toLowerCase()
@@ -56,13 +62,10 @@ export const DiliComponent = function(component: any) {
     },
     connectedCallback: {
       value: function connectedCallback(): void {
-        // this._childrenRead = false;
-        // https://stackoverflow.com/questions/49786436/accessing-childnodes-of-custom-elments
-        // const shadowRoot = this.attachShadow({mode: 'open'});
-        // const template = document.createElement('template');
-        // template.innerHTML = `Place your template here`;
-        // const instance = template.content.cloneNode(true);
-        // shadowRoot.appendChild(instance);
+        const shadowRoot = this.createShadowRoot()
+        const clone = document.importNode(this.template, true)
+
+        shadowRoot.appendChild(clone)
 
         console.log('connected')
         this.component.connected()
