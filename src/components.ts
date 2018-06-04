@@ -77,6 +77,16 @@ export const DiliComponent = function(component: any) {
     connectedCallback: {
       value: function connectedCallback(): void {
         console.log('connected')
+        console.log(this.attributes)
+        if (this.attributes && this.attributes.length > 0) {
+          for (let i = 0; i < this.attributes.length; i++) {
+            let attribute = this.attributes[i]
+            if (/[\w]/.test(attribute)) {
+              let name = RegExp.$1
+              console.log(attribute, name)
+            }
+          }
+        }
         this.bindData()
 
         this.component.connected()
