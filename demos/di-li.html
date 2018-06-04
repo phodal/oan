@@ -4,7 +4,7 @@
   {{text2}}
   <br/>
   {{text3}}
-  <input type="text" [model]="text2">
+  <input type="text" [model]="text2" (change)="onTextChange($event)">
 </template>
 
 <script>
@@ -18,6 +18,9 @@
       methods: {
         world: function () {
           console.log("world");
+        },
+        onTextChange: function ($event) {
+          console.log("onTextChange");
         }
       },
       connected: function () {
