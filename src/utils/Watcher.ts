@@ -30,5 +30,8 @@ export class Watcher {
     if (this.nodeType === 'input') {
       this.node.value = this.value
     }
+    if (this.nodeType === 'p') {
+      this.node.innerHTML = this.value
+    }
   }
 }

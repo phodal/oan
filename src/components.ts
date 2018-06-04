@@ -27,6 +27,7 @@ export const DiliComponent = function(component: any) {
 
         shadowRoot.appendChild(clone)
 
+        console.log(shadowRoot.childNodes)
         shadowRoot.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
@@ -53,9 +54,17 @@ export const DiliComponent = function(component: any) {
 
           if (node.nodeType === node.TEXT_NODE) {
             if (reg.test(node.nodeValue)) {
-              let name = RegExp.$1 // 获取匹配到的字符串
+              let name = RegExp.$1
               name = name.trim()
               let watcher = new Watcher(that.component, node, name, 'text')
+            }
+          }
+
+          if (nodeName === 'p') {
+            if (reg.test(node.innerHTML)) {
+              let name = RegExp.$1
+              name = name.trim()
+              let watcher = new Watcher(that.component, node, name, 'p')
             }
           }
         })
