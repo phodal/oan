@@ -13,6 +13,9 @@ export const DiliComponent = function(component: any) {
       value: function constructor() {
         this.component = component
 
+        if (typeof this.component.ready === 'function') {
+          this.component.ready()
+        }
         return DiliElement
       }
     },
