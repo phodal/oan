@@ -16,9 +16,8 @@ export const DiliComponent = function(component: any) {
         return DiliElement
       }
     },
-    connectedCallback: {
-      value: function connectedCallback(): void {
-        console.log('connected')
+    bindData: {
+      value: function() {
         let data = this.component.data
         if (data) {
           Observe(data, this.component)
@@ -73,6 +72,12 @@ export const DiliComponent = function(component: any) {
             }
           }
         })
+      }
+    },
+    connectedCallback: {
+      value: function connectedCallback(): void {
+        console.log('connected')
+        this.bindData()
 
         this.component.connected()
       }
