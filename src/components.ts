@@ -108,6 +108,32 @@ export const DiliComponent = function(component: any) {
         console.log('adoptedCallback')
         this.component.adopted()
       }
+    },
+
+    addEvents: {
+      value: function(): void {
+        return
+      }
+    },
+    addEvent: {
+      value: function(): void {
+        return
+      }
+    },
+    fireEvent: {
+      value: function(): void {
+        return
+      }
+    },
+    removeEvent: {
+      value: function(): void {
+        return
+      }
+    },
+    removeEvents: {
+      value: function(): void {
+        return
+      }
     }
   })
 
