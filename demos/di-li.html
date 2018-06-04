@@ -1,4 +1,11 @@
 <template>
+  <style>
+    :host {
+      color: #dd4633;
+      font: 18px Arial, sans-serif;
+    }
+  </style>
+
   {{text}}
   <br/>
   {{text2}}
@@ -23,7 +30,7 @@
           console.log("onTextChange");
         }
       },
-      ready: function() {
+      ready: function () {
         console.log('di li ready');
       },
       connected: function () {
