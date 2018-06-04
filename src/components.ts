@@ -85,10 +85,10 @@ export const DiliComponent = function(component: any) {
             if (/\[(\w+)\]/.test(attribute.name)) {
               let name = RegExp.$1
               this.component.data[name] = attribute.value
+              this.removeAttribute(attribute.name)
             }
           }
         }
-        console.log(this.component.data)
         this.bindData()
 
         this.component.connected()
