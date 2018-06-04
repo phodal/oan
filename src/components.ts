@@ -79,12 +79,13 @@ export const DiliComponent = function(component: any) {
         if (this.attributes && this.attributes.length > 0) {
           for (let i = 0; i < this.attributes.length; i++) {
             let attribute = this.attributes[i]
-            if (/\[\w+\]/.test(attribute.name)) {
+            if (/\[(\w+)\]/.test(attribute.name)) {
               let name = RegExp.$1
-              console.log(attribute.value, name)
+              this.component.data[name] = attribute.value
             }
           }
         }
+        console.log(this.component.data)
         this.bindData()
 
         this.component.connected()
