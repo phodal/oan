@@ -13,6 +13,12 @@ export const DiliComponent = function(component: any) {
       value: function constructor() {
         this.component = component
 
+        return DiliElement
+      }
+    },
+    connectedCallback: {
+      value: function connectedCallback(): void {
+        console.log('connected')
         let data = this.component.data
         if (data) {
           Observe(data, this.component)
@@ -27,7 +33,6 @@ export const DiliComponent = function(component: any) {
 
         shadowRoot.appendChild(clone)
 
-        console.log(shadowRoot.childNodes)
         shadowRoot.childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
@@ -69,11 +74,6 @@ export const DiliComponent = function(component: any) {
           }
         })
 
-        return DiliElement
-      }
-    },
-    connectedCallback: {
-      value: function connectedCallback(): void {
         this.component.connected()
       }
     },
