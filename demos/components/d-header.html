@@ -1,0 +1,44 @@
+<template>
+  <style>
+    .header {
+      height: 36px;
+      color: #fff;
+      padding: 0.5em;
+      background-color: #384452;
+      background-color: rgba(56, 68, 82, 0.8);
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header ul {
+      float: right;
+    }
+
+    .header span {
+      line-height: 200%;
+      float: left;
+      padding-left: 44px;
+    }
+  </style>
+  <div class="header">
+    <div class="pure-menu pure-menu-horizontal nav pure-u-md-1-1">
+      <span><a href="/" class="logo">Mifa</a></span>
+      <ul class="pure-menu-list menunav">
+        <li class="pure-menu-item"><a href="https://github.com/phodal/oan" class="pure-menu-link">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+oan.Component({
+  is: "d-header",
+  data: {
+    text: "Hello, ",
+    text2: "World"
+  }
+});
+</script>
