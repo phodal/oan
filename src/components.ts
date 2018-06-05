@@ -91,7 +91,9 @@ export const DiliComponent = function(component: any) {
         }
         this.bindData()
 
-        this.component.connected()
+        if (this.component.connected) {
+          this.component.connected()
+        }
       }
     },
     attributeChangedCallback: {
