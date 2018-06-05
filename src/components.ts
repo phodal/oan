@@ -19,23 +19,9 @@ export const DiliComponent = function(component: any) {
         return DiliElement
       }
     },
-    bindData: {
-      value: function() {
-        let data = this.component.data
-        if (data) {
-          Observe(data, this.component)
-        }
-
-        const thatDoc = document
-        const thisDoc = ((thatDoc as any)._currentScript || thatDoc.currentScript).ownerDocument
-        const selector = thisDoc.querySelector('template')
-        this.template = selector.content
-        const shadowRoot = this.createShadowRoot()
-        const clone = document.importNode(this.template, true)
-
-        shadowRoot.appendChild(clone)
-
-        shadowRoot.childNodes.forEach((node: any) => {
+    createBinding: {
+      value: function createBinding(childNodes: any) {
+        childNodes.forEach((node: any) => {
           let reg = /{{(.*)}}/
           let that = this
           let nodeName = node.nodeName.toLowerCase()
@@ -75,6 +61,34 @@ export const DiliComponent = function(component: any) {
             }
           }
         })
+      }
+    },
+    bindData: {
+      value: function() {
+        let data = this.component.data
+        if (data) {
+          Observe(data, this.component)
+        }
+
+        const thatDoc = document
+        const thisDoc = ((thatDoc as any)._currentScript || thatDoc.currentScript).ownerDocument
+
+        let bindShadowDom = false
+        if (bindShadowDom) {
+          const selector = thisDoc.querySelector('template')
+          this.template = selector.content
+          const shadowRoot = this.createShadowRoot()
+          const clone = document.importNode(this.template, true)
+
+          shadowRoot.appendChild(clone)
+          this.createBinding(shadowRoot.childNodes)
+        }
+
+        let querySelector = thisDoc.querySelector('template')
+        if (querySelector) {
+          this.createBinding(querySelector.content.childNodes)
+          this.appendChild(querySelector.content)
+        }
       }
     },
     connectedCallback: {
