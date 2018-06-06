@@ -105,8 +105,28 @@ export const DiliComponent = function(component: any) {
         }
       }
     },
+    getBindEvents: {
+      value: function getAttrData() {
+        let eventMap: {}[] = []
+        if (this.attributes && this.attributes.length > 0) {
+          for (let i = 0; i < this.attributes.length; i++) {
+            let attribute = this.attributes[i]
+            if (/\((\w+)\)/.test(attribute.name)) {
+              let name = RegExp.$1
+              eventMap.push({
+                event: name,
+                method: attribute.value
+              })
+            }
+          }
+        }
+
+        return eventMap
+      }
+    },
     connectedCallback: {
       value: function connectedCallback(): void {
+        let eventMap = this.getBindEvents()
         this.getAttrData()
         this.bindData()
 
