@@ -115,7 +115,7 @@ export const DiliComponent = function(component: any) {
               let name = RegExp.$1
               eventMap.push({
                 event: name,
-                method: attribute.value
+                method: attribute.value.replace(/\(\)/, '')
               })
             }
           }
@@ -127,6 +127,8 @@ export const DiliComponent = function(component: any) {
     connectedCallback: {
       value: function connectedCallback(): void {
         let eventMap = this.getBindEvents()
+
+        this.addEvents(this, eventMap)
         this.getAttrData()
         this.bindData()
 
@@ -155,8 +157,11 @@ export const DiliComponent = function(component: any) {
     },
 
     addEvents: {
-      value: function(): void {
-        return
+      value: function(node: Node, eventMap: any[]): void {
+        for (let i = 0; i < eventMap.length; i++) {
+          let event = eventMap[i]
+          node.addEventListener(event.event, this.component.methods[event.method])
+        }
       }
     },
     addEvent: {
