@@ -91,8 +91,8 @@ export const DiliComponent = function(component: any) {
         }
       }
     },
-    connectedCallback: {
-      value: function connectedCallback(): void {
+    getAttrData: {
+      value: function getAttrData() {
         if (this.attributes && this.attributes.length > 0) {
           for (let i = 0; i < this.attributes.length; i++) {
             let attribute = this.attributes[i]
@@ -103,6 +103,11 @@ export const DiliComponent = function(component: any) {
             }
           }
         }
+      }
+    },
+    connectedCallback: {
+      value: function connectedCallback(): void {
+        this.getAttrData()
         this.bindData()
 
         if (this.component.connected) {
