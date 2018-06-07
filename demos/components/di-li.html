@@ -26,8 +26,8 @@
         text2: "World"
       },
       methods: {
-        world: function () {
-          console.log("world");
+        world: function ($event) {
+          console.log("world", $event);
         },
         onTextChange: function ($event) {
           console.log("onTextChange");
