@@ -93,14 +93,19 @@ export const DiliComponent = function(component: any) {
     },
     getAttrData: {
       value: function getAttrData() {
+        let attrToRemove = []
         if (this.attributes && this.attributes.length > 0) {
           for (let i = 0; i < this.attributes.length; i++) {
             let attribute = this.attributes[i]
             if (/\[(\w+)\]/.test(attribute.name)) {
               let name = RegExp.$1
               this.component.data[name] = attribute.value
-              this.removeAttribute(attribute.name)
+              attrToRemove.push(attribute.name)
             }
+          }
+
+          for (let remove of attrToRemove) {
+            this.removeAttribute(remove)
           }
         }
       }
