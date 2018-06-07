@@ -10,3 +10,4 @@
 * [8. 自定义-ui-组件](0008-自定义-ui-组件.md)
 * [9. 考虑-web-components-之间的通讯机制](0009-考虑-web-components-之间的通讯机制.md)
 * [10. 路由系统设计](0010-路由系统设计.md)
+* [11. 考虑使用-web-continaer-技术](0011-考虑使用-web-continaer-技术.md)
