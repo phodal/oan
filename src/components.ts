@@ -160,13 +160,13 @@ export const DiliComponent = function(component: any) {
       value: function(node: Node, eventMap: any[]): void {
         for (let i = 0; i < eventMap.length; i++) {
           let event = eventMap[i]
-          node.addEventListener(event.event, this.component.methods[event.method])
+          this.addEvent(node, event)
         }
       }
     },
     addEvent: {
-      value: function(): void {
-        return
+      value: function(node: Node, event: any): void {
+        node.addEventListener(event.event, this.component.methods[event.method])
       }
     },
     fireEvent: {
