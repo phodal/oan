@@ -9,7 +9,7 @@ Demos
 
 Template:
 
-```
+```html
 <!doctype html>
 <html>
 <head>
@@ -31,7 +31,7 @@ Template:
 
 Component:
 
-```
+```html
 <template>
   <style>
     :host {
