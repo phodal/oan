@@ -4,43 +4,35 @@
       color: #dd4633;
       font: 18px Arial, sans-serif;
     }
-    p {
-      color: #23B7F3;
-    }
   </style>
-
-  <p> {{text}} </p>
+  {{text}}, <span>{{text3}}</span>
   <br/>
   {{text2}}
-  <br/>
-  {{text3}}
   <input type="text" [model]="text2" (change)="onTextChange($event)">
 </template>
 
 <script>
-  (function (window, document, undefined) {
-    oan.Component({
-      is: "di-li",
-      data: {
-        text: "Hello, ",
-        text2: "World"
+  oan.Component({
+    is: "di-li",
+    data: {
+      text: "Hello, ",
+      text2: "World"
+    },
+    methods: {
+      world: function ($event) {
+        console.log("world", $event);
       },
-      methods: {
-        world: function ($event) {
-          console.log("world", $event);
-        },
-        onTextChange: function ($event) {
-          console.log("onTextChange");
-        }
-      },
-      ready: function () {
-        console.log('di li ready');
-      },
-      connected: function () {
-        this.text = 'Hello...';
+      onTextChange: function ($event) {
+        console.log("onTextChange");
+      }
+    },
+    ready: function () {
+      console.log('di li ready');
+    },
+    connected: function () {
+      this.text = 'Hello...';
 
-        console.log('di-li connected')
-      },
-    });
-  })(window, document);
+      console.log('di-li connected')
+    },
+  });
 </script>
