@@ -137,27 +137,25 @@ export const DiliComponent = function(component: any) {
         this.getAttrData()
         this.bindData()
 
-        if (this.component.connected) {
-          this.component.connected()
-        }
+        this.component.connected && this.component.connected()
       }
     },
     attributeChangedCallback: {
       value: function attributeChangedCallback() {
         console.log('attributeChangedCallback')
-        this.component.change()
+        this.component.change && this.component.change()
       }
     },
     disconnectedCallback: {
       value: function disconnectedCallback() {
         console.log('disconnectedCallback')
-        this.component.disconnected()
+        this.component.disconnected && this.component.disconnected()
       }
     },
     adoptedCallback: {
       value: function adoptedCallback() {
         console.log('adoptedCallback')
-        this.component.adopted()
+        this.component.adopted && this.component.adopted()
       }
     },
 
