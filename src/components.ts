@@ -99,7 +99,13 @@ export const DiliComponent = function(component: any) {
             let attribute = this.attributes[i]
             if (/\[(\w+)\]/.test(attribute.name)) {
               let name = RegExp.$1
-              this.component.data[name] = attribute.value
+              console.log(name)
+              if (name === 'draggable') {
+                this.setAttribute(name, true)
+              } else {
+                this.component.data[name] = attribute.value
+              }
+
               attrToRemove.push(attribute.name)
             }
           }
